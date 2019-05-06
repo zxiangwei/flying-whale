@@ -1,0 +1,149 @@
+#include "widget.h"
+#include "ui_widget.h"
+#include<QPainter>
+#include<QKeyEvent>
+#include<QDebug>//timer
+#include<QTimerEvent>//timer
+const int tt=20;
+
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+    x=200;
+    y=200;
+    x1=100;
+    y1=100;
+    t1=this->startTimer(tt);
+    k=1200;
+}
+
+Widget::~Widget()
+{
+    delete ui;
+    killTimer(t1);
+}
+void Widget::draw1()
+{
+    QPainter painter(this);
+    QPen pen(QColor(150,255,255));//white
+    QBrush brush(QColor(0,245,252));
+    painter.setPen(pen);
+    painter.setBrush(brush);
+    for(int i=0;i<v.size();++i)
+    {
+    painter.drawEllipse(v[i].a,v[i].b,20,20);
+    }
+
+}
+/*void Widget::star()
+{
+    srand(time(0));
+        A temp1;
+        temp1.a=rand()%1000;
+        temp1.b=rand()%600;
+        vv.push_back(temp1);
+    QPainter painter(this);
+    QPen pen(QColor(255,255,255));//white
+    QBrush brush(QColor(120,255,222));
+    painter.setPen(pen);
+    painter.setBrush(brush);
+    for(int i=0;i<vv.size();++i)
+    {
+    painter.drawEllipse(vv[i].a,vv[i].b,15,20);
+    }
+    success();
+}*/
+void Widget::WhiteWhale()
+{
+
+    QPainter painter(this);
+    QPen pen(QColor(0,0,240));//white
+    QBrush brush(QColor(120,150,222));
+    painter.setPen(pen);
+    painter.setBrush(brush);
+    QPolygon pts;
+    pts.setPoints(12, 0+k,20,10+k,10,30+k,10,40+k,20, 50+k,20,60+k,0,70+k,10,80+k,10,60+k,20,50+k,30, 20+k,40,10+k,30); //第一个参数表示3个点，后面是三个点坐标
+    painter.drawConvexPolygon(pts);
+}
+void Widget::draw()
+{
+    QPainter painter(this);
+    QPen pen(QColor(255,255,255));//white
+    QBrush brush(QColor(120,255,222));
+    painter.setPen(pen);
+    painter.setBrush(brush);
+    painter.drawEllipse(x,y,25,25);
+}
+/*void Widget::success()
+{
+    for(int i=0;i<v.size();++i)
+    {
+        for(int j=0;j<vv.size();++j)
+            if((v[i].a-20<vv[i].a)&&(vv[i].a<v[i].a+20)&&(v[i].b-20<vv[i].b)&&(vv[i].b<v[i].b+20))
+            {
+                vv.erase(vv.begin()+i);
+            }
+    }
+}*/
+void Widget::WhaleBlood()
+{
+    QPainter painter(this);
+    QPen pen(QColor(255,255,255));//white
+    QBrush brush(QColor(255,0,100));
+    painter.setPen(pen);
+    painter.setBrush(brush);
+    painter.drawRect(0, 0, 100, 15);
+}
+void Widget:: paintEvent(QPaintEvent* ev)//paint
+{
+    //star();
+    WhiteWhale();
+    WhaleBlood();
+    draw1();
+    draw();
+}
+ void Widget::keyPressEvent(QKeyEvent*ev)//key
+ {
+    switch(ev->key())
+    {
+    case Qt::Key_Up:c=1;break;
+    case Qt::Key_Down:c=2;break;
+    case Qt::Key_Right:c=3;break;
+    case Qt::Key_Left:c=4;break;
+    case Qt::Key_Space:
+        {
+            A temp;
+            temp.a=x;
+            temp.b=y+5;
+            v.push_back(temp);
+            break;
+        }
+    }
+
+ }
+ void Widget:: timerEvent(QTimerEvent *ev)//timer
+{
+     if(ev->timerId()==t1)
+     {
+         for(int i=0;i<v.size();++i)
+         {
+             v[i].b=v[i].b-20;
+             if(v[i].b<0)v.erase(v.begin()+i);
+
+         }
+        k=k-5;if(k<0)k=1200;
+         switch(c)
+         {
+         case 1:y=y-8;if(y<0)y=600;break;
+         case 2:y=y+8;break;
+         case 3:x=x+8;if(x<0)x=0;break;
+         case 4:x=x-8;break;
+         }
+
+         update();
+     }
+ }
+
+
