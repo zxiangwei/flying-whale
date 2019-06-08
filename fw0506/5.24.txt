@@ -1,0 +1,184 @@
+//    for(std::pair<gun,bool> s:p.guns)
+//    {
+//        gun& k=s.first;
+//        painter.setPen(k.pen);
+//        painter.setBrush(k.brush);
+//     //   for(int i=0;i<v.size();++i)
+//        painter.drawEllipse(k.x,k.y,2*k.r,2*k.r);//2
+//    }
+
+//void Widget::FailAvoid()
+//{
+//       bool A[5]={0};
+//       int r[5]={0};
+//       int ww[5]={0};
+//       for(int i=0;i<5;++i)
+//       {
+//           r[i]=(40+150*(i+1)-0.5*w.k);
+//           ww[i]=2*r[i];
+//           dd[i]= (x-0.5*w.k-27.5-150*(i+1))*(x-0.5*w.k-27.5-150*(i+1))+(y-82.5-150*(i+1)+0.5*w.k)*(y-82.5-150*(i+1)+0.5*w.k) ;
+//           A[i]=( ( dd[i]<r[i]*r[i] ) &&(dd[i] >(r[i]-4)*(r[i]-4) )&&((y+12.5)>0.75*ww[i]) );
+//       }
+//       if( (w.hurt>25)&&(w.hurt<w.all_blood)&&
+//               ((A[1]==1)||(A[2]==1)||(A[3]==1)||(A[4]==1)))
+//       {
+//           MyHurt+=15;//Idie();
+//       }
+//}
+
+//         for(int i=0;i<v.size();++i)
+//         {
+//             v[i].b=v[i].b-20;
+//             if(v[i].b<0)
+//             {
+//                 v.erase(v.begin()+i);
+//                 if(used<750)used=used+50;
+//             }
+//         }
+//         if(w.hurt>w.all_blood)
+//        {w.k-=5;if(w.k<0)w.k=1500;}
+//         if(gun::usable<0)
+//         {
+//             update();
+//         }
+//         update();
+
+
+//    QRect r(x,y,a,a);
+//    rect(x, y, a, a);
+
+/*{ QRectF rect(40, 50, 80.0, 60.0); //x,y,w,h
+ int startAngle = 30 * 16; //值为，实际角度 * 16
+ int spanAngle = 120 * 16;
+ //三个参数：rect表示弧线所在的矩形，startAngle起始角度，spanAngle跨越角度
+ painter.drawArc(rect, startAngle, spanAngle);}*/
+
+//const short gun::r=10;
+//QPen const gun::pen(QColor(150,255,255));//white
+//QBrush const gun::brush(QColor(0,245,252));
+
+类变量QPainter
+
+#include <QIcon>
+#include <QBitmap>
+#include <QDebug>//timer
+
+main#include <iostream>
+
+using std::ostream;
+using std::istream;
+
+//        if(p.y>=k.y+k.a/2*(1+tan(selta))&&d(p.x,p.y,k.x+k.a/2,k.y+k.a/2)==k.a/2/cos(selta))
+
+
+//6.3
+//        switch(x)//for
+//        {
+////        case whale_x0:
+//        case 1500:
+//            for(wave& k:waves)
+//            {
+//                k.disappear();
+//            }
+//            waves[0].recreate(x,y);
+//            break;
+////        case whale_x0/4*3:
+//        case 1200:
+//            waves[1].recreate(x,y);
+//            break;
+////        case whale_x0/2:
+//        case 900:
+//            waves[2].recreate(x,y);
+//            break;
+////        case whale_x0/4:
+//        case 600:
+//            waves[3].recreate(x,y);
+//            break;
+//        case 300:
+//            waves[4].recreate(x,y);
+//            break;
+//        }
+
+//            k.recreate(x,y);
+
+//    rect.width()+=5;
+//    rect.height()+=5;
+
+//    a=size0;//a=0;
+
+//*(wave::startAngle/180+1);;
+
+const double wave::right_selta=(-wave::startAngle-wave::spanAngle)/180.0*M_PI;
+const double wave::left_selta=M_PI-right_selta-wave::spanAngle/180.0*M_PI;
+
+//#include <fstream>
+//using std::ifstream;
+//using std::ofstream;
+//ofstream& operator <<(ofstream& of,gun& g){}
+void gun::save()
+{
+//    of.open();
+//    of<<"number\t"<<number;
+}
+
+//        if(k.x<5000//exist//==
+//                &&distance>p.r+k.a/2&&distance<p.r+k.a/2+wave::delta_r//on
+//                &&((end_Angle>0&&p.x<x+k.r)||(end_Angle<=0&&p.x<x+cos(end_Angle)))
+//                &&((wave::startAngle<-180&&end_Angle>-180&&p.x+2*p.r>k.x)
+//                   ||((wave::startAngle>=-180||end_Angle<=-180)&&p.x+2*p.r>x+cos(wave::startAngle)))
+//                &&((wave::startAngle<-270&&end_Angle>-270&&p.y+2*p.r>k.y)
+//                   ||((wave::startAngle>=-270||end_Angle<=-270)&&(p.y+p.r>sin(wave::startAngle))||(p.y+p.r>end_Angle)))
+//                &&((wave::startAngle<-90&&end_Angle>-90&&p.y))||(0))
+//            //wave::startAngle<-90&&end_Angle>-90
+
+    for(wave& k:w.waves)
+    {
+        unsigned x=k.x+k.a/2;
+        unsigned y=k.y+k.a/2;
+        double distance=d(p.x+p.r,p.y+p.r,x,y);
+        int end_Angle=wave::startAngle+wave::spanAngle;
+
+        {
+            p.attacked();
+        }
+    }
+
+                &&((end_Angle>0&&p.x<x+k.r)||(p.x<x+delta_x))
+                &&((wave::startAngle<-180&&wave::startAngle+wave::spanAngle>-180&&p.x+2*p.r>x+delta_x)||(p.x+2*p.r>x+delta_x))
+                &&((wave::startAngle<-270&&end_Angle>-270&&p.y+2*p.r>k.y)
+                    ||((wave::startAngle>=-270||end_Angle<=-270)&&(p.y+p.r>sin(wave::startAngle))||(p.y+p.r>end_Angle)))
+                &&((wave::startAngle<-90&&end_Angle>-90&&p.y))||(0))
+
+//1932
+        unsigned x=k.x+k.a/2;
+        unsigned y=k.y+k.a/2;
+        double distance=d(p.x+p.r,p.y+p.r,x,y);
+        int end_Angle=wave::startAngle+wave::spanAngle;
+        double cos_start=(k.a/2+wave::delta_r)*cos(wave::startAngle);
+        double cos_end=(k.a/2+wave::delta_r)*cos(end_Angle);
+        double sin_start=(k.a/2+wave::delta_r)*sin(wave::startAngle);
+        double sin_end=(k.a/2+wave::delta_r)*sin(end_Angle);
+        if(k.x<5000//exist//==
+                &&distance>p.r+k.a/2&&distance<p.r+k.a/2+wave::delta_r//on
+                &&(1))
+
+p.y+2*p.r>=(k.y+k.a<<2)*3//(k.y+(k.a<<2)*3)
+
+	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0	0	0
+	0	
+0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0	0
+	0	0	0	0	0	0	0
+	0	0	0	0	0	0
+	0	0	0	0	0
+	0	0	0	0
+	0	0	0
+	0	0
+	0
